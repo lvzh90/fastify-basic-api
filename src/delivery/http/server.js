@@ -1,8 +1,10 @@
-import Fastify from "fastify";
+const Fastify = require("fastify");
 
 async function start() {
   const fastify = Fastify();
 
+  fastify.register(require('./routers/health.js'));
+  fastify.register(require('./routers/users.js'));
   fastify.get('/', () => ({ status: "Running" }));
   fastify.get('/Santiago', () => {
       return {
@@ -18,4 +20,4 @@ async function start() {
   }
 }
 
-export default start;
+module.exports = start;
